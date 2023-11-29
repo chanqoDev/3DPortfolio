@@ -1,7 +1,45 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+
+
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline text-blue-500">
-      Hello world!
-    </h1>
-  )
+    <main className="bg-slate-300/20">
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={'<Home />'} />
+          <Route path="/about" element={'<About />'} />
+          <Route path="/projects" element={'<Projects />'} />
+          <Route path="/contact" element={'<Contact />'} />
+        </Routes>
+      </BrowserRouter>
+
+      {/* Your other components */}
+    </main>
+  );
 }
+
+
+
+// import { Route, BrowserRouter as Router, Routes } from "react-router";
+
+ 
+
+// export default function App() {
+//   return (
+//     <main className="bg-slate-300/20">
+//       <Router>
+//         Navbar
+//         <Routes>
+//           <Route path="/" element={'Home'} />
+//           <Route path="/about" element={'About'} />
+//           <Route path="/projects" element={'Projects'} />
+//           <Route path="/contact" element={'Contact'} />
+//         </Routes>
+//       </Router>
+  
+      
+//    </main>
+//   )
+// }
