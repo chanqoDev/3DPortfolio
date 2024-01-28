@@ -26,7 +26,7 @@ Create project with Vite, React, JavaScript
 
 
 
-To install and configure Tailwind CSS for your project, follow these steps:
+To install and configure Tailwind CSS using vite for your project, follow these steps:
 
 [DOC](https://tailwindcss.com/)
  
@@ -35,7 +35,7 @@ To install and configure Tailwind CSS for your project, follow these steps:
 > $ npx tailwindcss init
 
 
-Configure your template paths
+NEXT STEP:  Configure your template paths
 Add the Tailwind directives to your CSS
 
  Install Tailwind CSS
@@ -70,3 +70,29 @@ Install React Router DOM as a dependency:
 
 
 
+install react-three-fiber :
+
+https://docs.pmnd.rs/react-three-fiber/getting-started/introduction
+
+> $ npm install three @react-three/fiber
+
+
+once we install three fiber we also have to install drei for this project; 
+it is useful helpers and fully functional, ready-made abstractions for @react-three/fiber. 
+
+https://www.npmjs.com/package/@react-three/drei
+
+
+> $ npm install @react-three/drei
+
+Note: because our Canva component can only load 3D objects 
+
+use SketchFab to download 3D Models 
+
+https://sketchfab.com/3d-models/foxs-islands-163b68e09fcc47618450150be7785907
+
+we download our 3D models in .gib format then convert them to JSX / JSON usting this website 
+
+https://gltf.pmnd.rs/
+
+> Copy to clipboard and then past it in our model component 'island.jsx' in this case
