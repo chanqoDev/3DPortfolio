@@ -24,12 +24,14 @@ const Home = () => {
   return (
     <section className='w-full h-screen relative'>
     <Canvas className='w-full h-screen bg-transparent' camera={{near: 0.1, far:1000 }}>
-            <Suspense fallback={<Loader />}>
-                <directionalLight />
-                <ambientLight />
-                <pointLight /> 
-                <spotLight />
-          <hemisphereLight />  
+        <Suspense fallback={<Loader />}>
+          {/* DirecitonalLIght: sunlight Direction or how you want your scene to be percevied */}
+          <directionalLight position={[1, 1, 1]} intensity={2} />
+          {/* ambientLight: illumininates all the objects in the scence without casting shawdows */}
+          <ambientLight intensity={0.5} />
+          {/* <pointLight /> &   <spotLight />  : immitslight from all direction from a single point */}
+        {/* illuminats the screen as a gradient */}
+          <hemisphereLight skyColor="b1e1ff" groundColor="#000000" intensity={1} />  
           <Island position={ islandPosition} scale={islandScale} rotation={islandRotation} /> 
             </Suspense>  
     </Canvas>
