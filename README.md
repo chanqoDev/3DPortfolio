@@ -96,3 +96,10 @@ we download our 3D models in .gib format then convert them to JSX / JSON usting 
 https://gltf.pmnd.rs/
 
 > Copy to clipboard and then past it in our model component 'island.jsx' in this case
+
+
+we make it animated using react-spring/three 
+
+https://www.npmjs.com/package/@react-spring/three
+
+> npm install @react-spring/three
