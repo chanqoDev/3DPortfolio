@@ -7,14 +7,66 @@ Title: Fox's islands
 */
 
 import { useRef, useEffect } from "react";
-import { useGLTF } from "@react-three/drei";
+import { MotionPathControls, useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import islandScence from "../assets/3d/island.glb"; 
 import { a } from '@react-spring/three'; 
 
-const Island = (props) => {
-const islandRef = useRef(); 
+// we have to then get access tothe the 3d rendering and viewport 
+const Island = ({isRotating, setIsRotating, ...props}) => {
+  const islandRef = useRef(); 
+  const { gl, viewport } = useThree(); // hook
   const { nodes, materials } = useGLTF(islandScence);
+
+  // then use a ref to get the mouse position
+  const lastX = useRef(0); 
+  const rotationSpeed = useRef(0); 
+  const dampingFactor = 0.95; // how fast does it move and continue moving. 
+
+  // what happend when we hold the mouse down
+  const handlePointerDown = (e) => {
+    e.stopPropagation(); 
+    e.preventDefault(); 
+    setIsRotating(true); 
+
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX; 
+    lastX.current = clientX; 
+  }
+
+  // making sure the island is rotating as button is being pressed. 
+  const handlePointerUp = (e) => {
+    e.stopPropagation(); 
+    e.preventDefault(); 
+    setIsRotating(false); 
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX; 
+    const delta = (clientX - lastX.current) / viewport.width; 
+    islandRef.current.rotation.y += delta * 0.01 * Math.PI; 
+    lastX.current = currentX; 
+    rotationSpeed.current = delta * 0.01 * Math.PI; 
+  }
+  
+   const handlePointerMove = (e) => {
+    e.stopPropagation(); 
+    e.preventDefault(); 
+    
+     if (isRotating) handlePointerUp(e); 
+   }
+  
+  useEffect(() => {
+    document.addEventListener('pointerdown', handlePointerDown); 
+    document.addEventListener('pointerup', handlePointerUp);     
+    document.addEventListener('pointermove', handlePointerMove); 
+    return () => {
+        document.addEventListener('pointerdown', handlePointerDown); 
+    document.addEventListener('pointerup', handlePointerUp);     
+    document.addEventListener('pointermove', handlePointerMove); 
+    }
+
+
+
+  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]); 
+
+
   return (
     <a.group ref={islandRef}  {...props} >
       <mesh
